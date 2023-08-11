@@ -63,7 +63,14 @@ void infiniteStackFunction(void *topOfHeap) {
   return;
 }
 
-int main() {
+int main(
+    int argc,
+    char *argv[]) {
+  printf("|----memory segments----|\n");
+  printf("|-----------------------|\n");
+  printf("|argc, argv             |\n");
+  printf("%p : argc\n", &argc);
+  printf("%p : argv\n", &argv);
   printf("|-----------------------|\n");
   printf("|stack (grows down)     |\n");
   recursiveStackFunction(1, 4);
