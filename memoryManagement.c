@@ -5,6 +5,8 @@
 
 /*
   |-----------------------|
+  |argc, argv             |
+  |-----------------------|
   |stack (grows down)     |
   |-----------------------|
   |                       |
@@ -15,7 +17,12 @@
   |-----------------------|
   |heap (grows up)        |
   |-----------------------|
-  |data (global variables)|
+  |global variables       |
+  |uninitialized data     |
+  |fixed size             |
+  |-----------------------|
+  |global variables       |
+  |initialized data       |
   |fixed size             |
   |-----------------------|
   |text (code)            |
@@ -24,8 +31,8 @@
 */
 
 // global variables are stored in the data segment
-int unassignedGlobalVariables1, unassignedGlobalVariables2, unassignedGlobalVariables3;
-int assignGlobalVariables1 = 1, assignGlobalVariables2 = 2, assignGlobalVariables3 = 3;
+int uninitializedGlobalVariables1, uninitializedGlobalVariables2, uninitializedGlobalVariables3;
+int initializedGlobalVariables1 = 1, initializedGlobalVariables2 = 2, initializedGlobalVariables3 = 3;
 
 void recursiveStackFunction(int now, int end) {
   if (now == end + 1) {
@@ -68,18 +75,21 @@ int main() {
   printf("|                       |\n");
   printf("|-----------------------|\n");
   recursiveHeapFunction(1, 4);
+  printf("|heap (grows up)        |\n");
   printf("|-----------------------|\n");
   printf("|global variables       |\n");
-  printf("|fixed size             |\n");
-  printf("%p : unassignedGlobalVariables3\n", &unassignedGlobalVariables3);
-  printf("%p : unassignedGlobalVariables2\n", &unassignedGlobalVariables2);
-  printf("%p : unassignedGlobalVariables1\n", &unassignedGlobalVariables1);
-  printf("%p : assignGlobalVariables3\n", &assignGlobalVariables3);
-  printf("%p : assignGlobalVariables2\n", &assignGlobalVariables2);
-  printf("%p : assignGlobalVariables1\n", &assignGlobalVariables1);
+  printf("|uninitialized data     |\n");
+  printf("%p : uninitializedGlobalVariables3\n", &uninitializedGlobalVariables3);
+  printf("%p : uninitializedGlobalVariables2\n", &uninitializedGlobalVariables2);
+  printf("%p : uninitializedGlobalVariables1\n", &uninitializedGlobalVariables1);
+  printf("|-----------------------|\n");
+  printf("|global variables       |\n");
+  printf("|initialized data       |\n");
+  printf("%p : initializedGlobalVariables3\n", &initializedGlobalVariables3);
+  printf("%p : initializedGlobalVariables2\n", &initializedGlobalVariables2);
+  printf("%p : initializedGlobalVariables1\n", &initializedGlobalVariables1);
   printf("|-----------------------|\n");
   printf("|text (code)            |\n");
-  printf("|fixed size             |\n");
   printf("|-----------------------|\n");
 
   printf("\n\n\n");
