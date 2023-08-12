@@ -15,14 +15,14 @@ def timeit(func: Callable) -> Callable:
 
 
 @timeit
-def normal_func():
+def normal_func() -> None:
     result = 0
     for i in range(10000):
         result *= i
 
 
 @timeit
-def io_func():
+def io_func() -> None:
     for _ in range(10000):
         with open("test.txt", "w") as f:
             f.write("test")
