@@ -31,8 +31,12 @@
 */
 
 // global variables are stored in the data segment
-int uninitializedGlobalVariables1, uninitializedGlobalVariables2, uninitializedGlobalVariables3;
-int initializedGlobalVariables1 = 1, initializedGlobalVariables2 = 2, initializedGlobalVariables3 = 3;
+int uninitializedGlobalVariables1;
+int initializedGlobalVariables1 = 1;
+int initializedGlobalVariables2 = 2;
+int uninitializedGlobalVariables2;
+int uninitializedGlobalVariables3;
+int initializedGlobalVariables3 = 3;
 
 void recursiveStackFunction(int now, int end) {
   if (now > end) {
