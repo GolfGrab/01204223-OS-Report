@@ -35,7 +35,7 @@ int uninitializedGlobalVariables1, uninitializedGlobalVariables2, uninitializedG
 int initializedGlobalVariables1 = 1, initializedGlobalVariables2 = 2, initializedGlobalVariables3 = 3;
 
 void recursiveStackFunction(int now, int end) {
-  if (now == end + 1) {
+  if (now > end) {
     return;
   }
   int stackVariable = 1;
@@ -45,7 +45,7 @@ void recursiveStackFunction(int now, int end) {
 }
 
 void recursiveHeapFunction(int now, int end) {
-  if (now == end + 1) {
+  if (now > end) {
     return;
   }
   int *heapVariable = (int *)malloc(sizeof(int));
