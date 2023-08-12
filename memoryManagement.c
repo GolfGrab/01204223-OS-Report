@@ -104,7 +104,7 @@ int main(
   printf("|-----------------------|\n");
 
   printf("\n\n\n");
-  int *heapVariable = (int *)malloc(sizeof(int));
+  int *heapVariable = (int *)malloc(sizeof(int) * 180000);
   printf("%p : top of variable in heap\n", heapVariable);
   printf("if stack and heap grow to each other, it will cause stack overflow\n");
   infiniteStackFunction(heapVariable);
