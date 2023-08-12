@@ -3,30 +3,37 @@ from typing import Callable
 
 
 def timeit(func: Callable) -> Callable:
-    def wrapper():
+    def wrapper(*args, **kwargs):
         start = time.time()
-        result = func()
+        result = func(*args, **kwargs)
         end = time.time()
 
-        print(f"running {func.__name__} took {end - start} seconds")
+        print(f"running {func.__name__} took {end - start : .8f} seconds")
         return result
 
     return wrapper
 
 
 @timeit
-def normal_func() -> None:
-    result = 0
-    for i in range(10000):
-        result *= i
+def normal_func(n) -> None:
+    result = 1
+    for i in range(n):
+        result *= i + 1
 
 
 @timeit
-def io_func() -> None:
-    for _ in range(10000):
+def io_func(n) -> None:
+    for _ in range(n):
         with open("test.txt", "w") as f:
             f.write("test")
 
 
-normal_func()
-io_func()
+print("Timing normal_func and io_func with 1000 iterations each...")
+normal_func(1000)
+io_func(1000)
+print("Timing normal_func and io_func with 10000 iterations each...")
+normal_func(10000)
+io_func(10000)
+print("Timing normal_func and io_func with 100000 iterations each...")
+normal_func(100000)
+io_func(100000)
